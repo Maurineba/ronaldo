@@ -1,5 +1,5 @@
-from ..models.produto import Produto
+from mrp.models.produto import Produto
 
 class Insumo(Produto):
-    pass
+   pass
 

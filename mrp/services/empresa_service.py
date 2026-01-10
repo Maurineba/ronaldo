@@ -1,8 +1,10 @@
+from mrp.models.estoque import Estoque
+
 from mrp.services.estoque_service import EstoqueService
 
 class EmpresaService():
-   def __init__(self, estoque: EstoqueService):
-      self.estoque = estoque
+   def __init__(self):
+      self.estoque = Estoque()
       self.produtos_cadastrado = []
 
    def cadastrar_produto(self, produto):

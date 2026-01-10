@@ -1,7 +1,18 @@
+from mrp.services.empresa_service import EmpresaService
+from mrp.services.produto_service import ProdutoService
+
+from .interfaces.cadastrar_produto import cadastrar_produto_ui
+from .interfaces.criar_estrutura import criar_estrutura_ui
+from .interfaces.produzir_produto import produzir_produto_ui
+
+
+empresa_service = EmpresaService()
+produto_service = ProdutoService()
+
 def menu_principal(empresa):
    while True:
       print("\n==============================")
-      print("🏭 SISTEMA MRP -", empresa.nome)
+      print("SISTEMA MRP -", empresa.nome)
       print("==============================")
       print("1 - Cadastrar Produto")
       print("2 - Criar Estrutura de Produto")
@@ -11,17 +22,22 @@ def menu_principal(empresa):
 
       opcao = input("Escolha: ")
 
-      if opcao == "1":
-         cadastrar_produto(empresa)
+      match opcao:
+         case "1":
+            cadastrar_produto_ui(empresa_service)
 
-      elif opcao == "2":
-         criar_estrutura(empresa)
-      elif opcao == "3":
-         produzir_produto(empresa)
-      elif opcao == "4":
-         empresa.estoque.listar()
-      elif opcao == "0":
-         print("Encerrando sistema...")
-         break
-      else:
-         print("❌ Opção inválida")
+         case "2":
+            criar_estrutura_ui(empresa_service)
+
+         case "3":
+            produzir_produto_ui(empresa_service, produto_service)
+
+         case "4":
+            empresa_service.estoque.listar()
+
+         case "0":
+            print("\nEncerrando sistema... Até logo!")
+            break
+
+         case _:
+            print("\nOpção inválida! Tente um número entre 0 e 4.")
