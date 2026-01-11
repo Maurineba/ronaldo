@@ -1,5 +1,6 @@
-from mrp.models.produto import Produto
-
+from models.produto import Produto
+#produto com nome de insumo
 class Insumo(Produto):
-   pass
+   def __init__(self, codigo, nome):
+      super().__init__(codigo, nome)
 

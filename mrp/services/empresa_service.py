@@ -1,18 +1,23 @@
-from mrp.models.estoque import Estoque
+from models.estoque import Estoque
+from models.empresa import Empresa
+from models.produto import Produto
 
-from mrp.services.estoque_service import EstoqueService
 
 class EmpresaService():
-   def __init__(self):
+   def __init__(self, empresa: Empresa):
+      self.empresa = empresa
       self.estoque = Estoque()
       self.produtos_cadastrado = []
 
-   def cadastrar_produto(self, produto):
-      self.produtos_cadastrados.append(produto)
-      self.estoque.adicionar(produto, 0)
+   def cadastrar_produto(self, produto: Produto):
+      self.empresa.produtos_cadastrados.append({"produto":produto.nome, "codigo":produto.codigo})
+      if self.empresa.produtos_cadastrados[-1]["codigo"] == produto.codigo and self.empresa.produtos_cadastrados[-1]["produto"] == produto.nome:
+          return True
+      return False
+
 
    def buscar_produto(self, codigo):
-      for produto in self.produtos_cadastrados:
+      for produto in self.empresa.produtos_cadastrados:
           if produto.codigo == codigo:
               return produto
       return None

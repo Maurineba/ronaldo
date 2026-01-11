@@ -1,10 +1,10 @@
-from mrp.services.empresa_service import EmpresaService
-from mrp.services.produto_service import ProdutoService
-
-empresa_service = EmpresaService()
-produto_service = ProdutoService()
+from services.empresa_service import EmpresaService
+from services.produto_service import ProdutoService
 
 def produzir_produto_ui(empresa):
+
+   empresa_service = EmpresaService(empresa)
+   produto_service = ProdutoService()
    print("\n--- ORDEM DE PRODUÇÃO ---")
    codigo = input("Código do Produto Final: ")
 

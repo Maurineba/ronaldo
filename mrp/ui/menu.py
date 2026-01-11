@@ -1,15 +1,27 @@
-from mrp.services.empresa_service import EmpresaService
-from mrp.services.produto_service import ProdutoService
+from services.empresa_service import EmpresaService
+from services.produto_service import ProdutoService
+from services.estoque_service import EstoqueService
+from ui.interfaces.cadastrar_produto import cadastrar_produto_ui
+from ui.interfaces.criar_estrutura import criar_estrutura_ui
+from ui.interfaces.produzir_produto import produzir_produto_ui
 
-from .interfaces.cadastrar_produto import cadastrar_produto_ui
-from .interfaces.criar_estrutura import criar_estrutura_ui
-from .interfaces.produzir_produto import produzir_produto_ui
 
 
-empresa_service = EmpresaService()
-produto_service = ProdutoService()
+def mostrar_produtos(empresa):
+   print("\n--- PRODUTOS CADASTRADOS ---")
+   if not empresa.produtos_cadastrados:
+      print("Nenhum produto cadastrado.")
+      return
+
+   for produto in empresa.produtos_cadastrados:
+      print(f"Código: {produto['codigo']} | Nome: {produto['produto']}")
+
+
+
 
 def menu_principal(empresa):
+   estoque_service = EstoqueService(empresa)
+   produto_service = ProdutoService()
    while True:
       print("\n==============================")
       print("SISTEMA MRP -", empresa.nome)
@@ -24,16 +36,19 @@ def menu_principal(empresa):
 
       match opcao:
          case "1":
-            cadastrar_produto_ui(empresa_service)
+            cadastrar_produto_ui(empresa)
 
          case "2":
-            criar_estrutura_ui(empresa_service)
+            criar_estrutura_ui()
 
          case "3":
-            produzir_produto_ui(empresa_service, produto_service)
+            produzir_produto_ui(produto_service)
 
          case "4":
-            empresa_service.estoque.listar()
+            estoque_service.listar(empresa)
+
+         case "5":
+            mostrar_produtos(empresa)
 
          case "0":
             print("\nEncerrando sistema... Até logo!")

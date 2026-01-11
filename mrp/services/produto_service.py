@@ -1,5 +1,5 @@
-from mrp.models.produto_final import ProdutoFinal
-from mrp.models.produto import Produto
+from models.produto_final import ProdutoFinal
+from models.produto import Produto
 
 class ProdutoService():
    def realizar_producao(produto_final, qtd_desejada, estoque):
