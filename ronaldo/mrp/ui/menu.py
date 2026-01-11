@@ -7,19 +7,11 @@ from ui.interfaces.produzir_produto import produzir_produto_ui
 
 
 
-def mostrar_produtos(empresa):
-   print("\n--- PRODUTOS CADASTRADOS ---")
-   if not empresa.produtos_cadastrados:
-      print("Nenhum produto cadastrado.")
-      return
-
-   for produto in empresa.produtos_cadastrados:
-      print(f"Código: {produto['codigo']} | Nome: {produto['produto']}")
-
 
 
 
 def menu_principal(empresa):
+   empresa_service = EmpresaService(empresa)
    estoque_service = EstoqueService(empresa)
    produto_service = ProdutoService()
    while True:
@@ -30,6 +22,7 @@ def menu_principal(empresa):
       print("2 - Criar Estrutura de Produto")
       print("3 - Produzir Produto")
       print("4 - Ver Estoque")
+      print("5 - Listar Produtos Cadastrados")
       print("0 - Sair")
 
       opcao = input("Escolha: ")
@@ -39,7 +32,7 @@ def menu_principal(empresa):
             cadastrar_produto_ui(empresa)
 
          case "2":
-            criar_estrutura_ui()
+            criar_estrutura_ui(empresa_service)
 
          case "3":
             produzir_produto_ui(produto_service)
@@ -48,7 +41,7 @@ def menu_principal(empresa):
             estoque_service.listar(empresa)
 
          case "5":
-            mostrar_produtos(empresa)
+            empresa_service.listar_produtos()
 
          case "0":
             print("\nEncerrando sistema... Até logo!")

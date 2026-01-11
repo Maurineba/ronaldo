@@ -1,4 +1,7 @@
-def criar_estrutura_ui(empresa_service):
+from services.empresa_service import EmpresaService
+
+def criar_estrutura_ui(empresa_service: EmpresaService):
+   
    print("\n--- CONFIGURAR ESTRUTURA ---")
 
    codigo_pf = input("Código do Produto Final: ")

@@ -18,7 +18,7 @@ class EmpresaService():
 
    def buscar_produto(self, codigo):
       for produto in self.empresa.produtos_cadastrados:
-          if produto.codigo == codigo:
+          if produto["codigo"] == codigo:
               return produto
       return None
 
@@ -29,3 +29,13 @@ class EmpresaService():
           self.estoque.remover_do_sistema(codigo)
           return True
       return False
+
+   def listar_produtos(self):
+      print("\n--- PRODUTOS CADASTRADOS ---")
+
+      if not self.empresa.produtos_cadastrados: #verifica se a lista está vazia
+         print("Nenhum produto cadastrado.")
+         pass
+
+      for produto in self.empresa.produtos_cadastrados: #se a lista não estiver vazia, percorre e imprime os produtos
+         print(f"Código: {produto['codigo']} | Nome: {produto['produto']}")
