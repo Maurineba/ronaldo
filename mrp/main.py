@@ -4,18 +4,19 @@ import os
 # Adiciona o diretório atual ao sys.path para garantir que os imports funcionem
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from mrp.models.empresa import Empresa
-from mrp.ui.menu import menu_principal
+from models.empresa import Empresa
+from ui.menu import menu_principal
 
 def iniciar_sistema():
     try:
         print("--- SISTEMA MRP (Eng. Computação IFCE) ---")
-        nome_empresa = input("Digite o nome da empresa: ").strip()
+        
+        nome_empresa = input("Digite o nome da empresa: ").strip() #variável para receber o nome da empresa
 
         if not nome_empresa:
             nome_empresa = "Empresa Padrão"
 
-        empresa = Empresa(nome_empresa)
+        empresa = Empresa(nome_empresa) #objeto empresa criado
 
         # Chama o menu principal
         menu_principal(empresa)

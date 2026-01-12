@@ -1,29 +1,24 @@
-from mrp.services.empresa_service import EmpresaService
-from mrp.services.produto_service import ProdutoService
-
-empresa_service = EmpresaService()
-produto_service = ProdutoService()
+from services.empresa_service import EmpresaService
+from services.produto_service import ProdutoService
 
 def produzir_produto_ui(empresa):
+   empresa_service = EmpresaService(empresa)
+   produto_service = ProdutoService()
+
    print("\n--- ORDEM DE PRODUÇÃO ---")
+
    codigo = input("Código do Produto Final: ")
 
-   try:
-      quantidade = int(input("Quantidade a produzir: "))
-      if quantidade <= 0: raise ValueError
-   except ValueError:
-      print("❌ Erro: Quantidade deve ser um número inteiro positivo.")
-      return
-
    produto = empresa_service.buscar_produto(codigo)
-
    if not produto:
-      print(f"❌ Erro: Produto '{codigo}' não encontrado.")
-      return
+      raise "Produto nao encontrado"
 
-   sucesso, mensagem = produto_service.realizar_producao(produto, quantidade)
+   quantidade = int(input("Quantidade a produzir: "))
+   if quantidade <= 0:
+      raise "Quantidade deve ser um número inteiro positivo."
 
-   if sucesso:
-      print(f"✅ {mensagem}")
-   else:
-      print(f"⚠️ {mensagem}")
+   produto = produto_service.realizar_producao(produto, quantidade)
+
+   print(f"Produto '{produto.nome}' produzido com sucesso!!!")
+
+

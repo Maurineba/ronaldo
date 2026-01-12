@@ -1,4 +1,4 @@
-from mrp.models.estoque import Estoque
+from models.estoque import Estoque
 
 class Empresa:
    def __init__(self, nome: str):
