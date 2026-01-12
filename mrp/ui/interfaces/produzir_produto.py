@@ -9,19 +9,19 @@ def produzir_produto_ui(empresa):
    
    print("\n--- ORDEM DE PRODUÇÃO ---")
 
-   codigo = input("Código do Produto Final: ")
+   codigo = input("Código do Produto: ")
 
    produto = empresa_service.buscar_produto(codigo)
    if not produto:
-      print("Produto nao encontrado")
+      print("Produto não encontrado")
       return
 
    quantidade = int(input("Quantidade a produzir: "))
    if quantidade <= 0:
-      print("Quantidade deve ser um número inteiro positivo.")
+      print("Quantidade deve ser maior que zero")
       return
 
    produto = produto_service.realizar_producao(produto, quantidade, estoque_service)
 
    if produto:
-      print(f"Produto '{produto.nome}' produzido com sucesso!!!")
+      print(f"Produto '{produto.nome}' produzido com sucesso!")
