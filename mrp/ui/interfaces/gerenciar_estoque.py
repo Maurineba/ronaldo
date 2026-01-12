@@ -2,7 +2,7 @@ from services.estoque_service import EstoqueService
 
 def resolve_estoque(acao: str):
    codigo = input(f"Insira o codigo do produto que você quer {acao}: ")
-   quantidade = int(input(f"Insira a quantidade que voce deseja {acao}"))
+   quantidade = int(input(f"Insira a quantidade que voce deseja {acao}: "))
 
    return codigo, quantidade
 
@@ -17,7 +17,7 @@ def gerenciar_estoque_ui(empresa):
       print("3 - Remover itens do Estoque")
       print("0 - Voltar ao Menu")
 
-      opcao = input("Escolha: ")
+      opcao = str(input("Escolha: "))
 
       match opcao:
          case "1":

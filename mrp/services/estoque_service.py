@@ -65,11 +65,18 @@ class EstoqueService():
 
    def listar(self):
       print("\n--- STATUS DO ESTOQUE ---")
+
       if not self.empresa.estoque.itens:
          print("Estoque vazio.")
-      for item in self.empresa.estoque.itens:
-         tipo = "Insumo" if isinstance(item['produto'], Insumo) else "Prod. Final"
-         print(f"{item['produto']} | Tipo: {tipo} | Qtd: {item['quantidade']}")
+         return
+
+      for item in self.empresa.estoque.itens.values():
+         tipo = "Insumo" if isinstance(item["produto"], Insumo) else "Prod. Final"
+         print(
+             f"{item['produto']} | "
+             f"Tipo: {tipo} | "
+             f"Qtd: {item['quantidade']}"
+         )
 
 
 
