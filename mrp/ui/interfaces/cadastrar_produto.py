@@ -17,7 +17,7 @@ def cadastrar_produto_ui(empresa):
 
    # validacoes
    if not codigo:
-      print("❌ O código não pode ser vazio.")
+      print("O código não pode ser vazio.")
       return
 
    nome = input("Nome do produto: ").strip()

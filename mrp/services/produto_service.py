@@ -16,14 +16,14 @@ class ProdutoService():
          necessario = item.quantidade * qtd_desejada
          disponivel = estoque.obter_quantidade(item.insumo)
          if disponivel < necessario:
-            print(f"❌ Falta Insumo: {item.insumo.nome} (Precisa: {necessario}, Tem: {disponivel})")
+            print(f"Falta Insumo: {item.insumo.nome} (Precisa: {necessario}, Tem: {disponivel})")
             pode_produzir = False
 
       if pode_produzir:
          for item in produto_final.estrutura:
             estoque.remover(item.insumo, item.quantidade * qtd_desejada)
          estoque.adicionar(produto_final, qtd_desejada)
-         print(f"✅ Sucesso: {qtd_desejada} unidade(s) de '{produto_final.nome}' produzidas!")
+         print(f"Sucesso: {qtd_desejada} unidade(s) de '{produto_final.nome}' produzidas!")
 
       return produto_final
 
