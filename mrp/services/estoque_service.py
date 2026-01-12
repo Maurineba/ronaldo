@@ -1,8 +1,6 @@
 from models.insumo import Insumo
 from models.empresa import Empresa
 
-
-
 class EstoqueService():
    def __init__(self, empresa: Empresa):
       self.empresa = empresa
@@ -32,8 +30,6 @@ class EstoqueService():
              "quantidade": quantidade
          }
 
-
-
    def remover(self, produto_codigo, quantidade):
       if quantidade <= 0:
          print("A quantidade deve ser um inteiro positivo")
@@ -61,8 +57,6 @@ class EstoqueService():
 
       itens[produto.codigo]["quantidade"] -= quantidade
 
-
-
    def listar(self):
       print("\n--- STATUS DO ESTOQUE ---")
 
@@ -71,29 +65,21 @@ class EstoqueService():
          return
 
       for item in self.empresa.estoque.itens.values():
-         tipo = "Insumo" if isinstance(item["produto"], Insumo) else "Prod. Final"
-         print(
-             f"{item['produto']} | "
-             f"Tipo: {tipo} | "
-             f"Qtd: {item['quantidade']}"
-         )
-
-
+         produto = item["produto"]
+         quantidade = item["quantidade"]
+         tipo = "Insumo" if isinstance(produto, Insumo) else "Prod. Final"
+         print(f"{produto.codigo} - {produto.nome} | Tipo: {tipo} | Qtd: {quantidade}")
 
    def obter_quantidade(self, produto):
       if produto.codigo in self.itens:
          return self.itens[produto.codigo]["quantidade"]
       return 0
 
-
-
    def definir_quantidade(self, produto_codigo, nova_qtd):
       if produto_codigo in self.itens:
          self.itens[produto_codigo]["quantidade"] = nova_qtd
          return True
       return False
-
-
 
    def deletar_do_estoque(self, codigo):
       if codigo in self.itens:
