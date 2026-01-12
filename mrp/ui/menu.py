@@ -6,6 +6,7 @@ from ui.interfaces.cadastrar_produto import cadastrar_produto_ui
 from ui.interfaces.criar_estrutura import criar_estrutura_ui
 from ui.interfaces.produzir_produto import produzir_produto_ui
 from ui.interfaces.gerenciar_estoque import gerenciar_estoque_ui
+from ui.interfaces.listar_produtos import listar_produtos_ui
 
 
 def menu_principal(empresa):
@@ -23,20 +24,20 @@ def menu_principal(empresa):
       opcao = input("Escolha: ")
 
       match opcao:
-         case "1":
+         case "1": #OK
             cadastrar_produto_ui(empresa)
 
-         case "2":
+         case "2": #OK
             criar_estrutura_ui(empresa)
 
          case "3":
             produzir_produto_ui(empresa)
 
-         case "4":
-            gerenciar_estoque_ui(empresa) # criar um arquivo em ui/interface para aqui no menu
+         case "4": #OK
+            gerenciar_estoque_ui(empresa) 
 
-         # case "5":
-         #    empresa_service.listar_produtos() # criar um arquivo em ui/interface para aqui no menu
+         case "5":
+           listar_produtos_ui(empresa)
 
          case "0":
             print("\nEncerrando sistema... Até logo!")
