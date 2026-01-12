@@ -1,0 +1,1 @@
+from .producao_service import realizar_producao
