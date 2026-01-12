@@ -4,9 +4,16 @@ from services.estoque_service import EstoqueService
 from ui.interfaces.cadastrar_produto import cadastrar_produto_ui
 from ui.interfaces.criar_estrutura import criar_estrutura_ui
 from ui.interfaces.produzir_produto import produzir_produto_ui
+from models.empresa import Empresa
 
 
-def menu_principal(empresa):
+
+
+
+def menu_principal(empresa: Empresa):
+
+   estoque_service = EstoqueService(empresa)
+   empresa_service = EmpresaService(empresa)
    while True:
       print("\n==============================")
       print("SISTEMA MRP -", empresa.nome)
@@ -31,7 +38,7 @@ def menu_principal(empresa):
             produzir_produto_ui(empresa)
 
          case "4":
-            estoque_service.listar(empresa) # criar um arquivo em ui/interface para aqui no menu
+            estoque_service.listar() # criar um arquivo em ui/interface para aqui no menu
 
          case "5":
             empresa_service.listar_produtos() # criar um arquivo em ui/interface para aqui no menu

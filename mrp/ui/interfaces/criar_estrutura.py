@@ -14,17 +14,21 @@ def criar_estrutura_ui(empresa):
 
    pf = empresa_service.buscar_produto(codigo_pf)
    if not pf:
-      raise ValueError("Produto não encontrado")
+      print("Produto não encontrado")
+      return
    if not hasattr(pf,"estrutura"):
-      raise ValueError("Produto não permite estrutura")
+      print("Produto não permite estrutura")
+      return
 
    codigo_insumo = input("COdigo do Insumo: ")
 
    insumo = empresa_service.buscar_produto(codigo_insumo)
    if not insumo:
-      raise ValueError("Insumo não encontrado")
+      print("Insumo não encontrado")
+      return
    if not isinstance(insumo, Insumo):
-      raise ValueError("Insira o código de um Insumo, não de Produto Final")
+      print("Insira o código de um Insumo, não de Produto Final")
+      return
 
    qtd = int(input("Quantidade do insumo por produto: "))
    produto_service.criar_estrutura(pf, insumo, qtd)
