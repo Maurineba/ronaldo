@@ -1,6 +1,7 @@
 from models.produto import Produto
-#produto com nome de insumo
-class Insumo(Produto):
-   def __init__(self, codigo, nome):
-      super().__init__(codigo, nome)
 
+class Insumo(Produto):
+   def __init__(self, codigo, nome, eh_composto=False):
+      super().__init__(codigo, nome)
+      self.eh_composto = eh_composto  
+      self.estrutura = []  
