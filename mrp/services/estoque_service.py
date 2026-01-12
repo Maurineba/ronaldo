@@ -4,7 +4,6 @@ from models.empresa import Empresa
 
 
 class EstoqueService():
-
    def __init__(self, empresa: Empresa):
       self.empresa = empresa
 
@@ -45,7 +44,6 @@ class EstoqueService():
 
 
    def definir_quantidade(self, produto_codigo, nova_qtd):
-      """Ajuste direto do estoque (Editar Estoque)."""
       if produto_codigo in self.itens:
          self.itens[produto_codigo]["quantidade"] = nova_qtd
          return True

@@ -9,15 +9,16 @@ from models.produto import Produto
 def cadastrar_produto_ui(empresa):
    empresa_service = EmpresaService(empresa)
 
+
+   # interface para efeturar o cadastro de produtos
    print("\n--- NOVO CADASTRO DE PRODUTO ---")
 
    codigo = input("Código identificador: ").strip()
 
+   # validacoes
    if not codigo:
       print("❌ O código não pode ser vazio.")
       return
-
-
 
    nome = input("Nome do produto: ").strip()
 
@@ -31,6 +32,7 @@ def cadastrar_produto_ui(empresa):
    print(" [1] Insumo")
    print(" [2] Produto Final")
 
+   # set, estrutura imutavel, para garantir que o sistema nao altere ela e que o usario escolha apenas as opcoes disponiveis
    opcoes = ("1", "2")
 
    tipo = str(input("Opção: "))

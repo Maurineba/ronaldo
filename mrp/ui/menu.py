@@ -6,14 +6,7 @@ from ui.interfaces.criar_estrutura import criar_estrutura_ui
 from ui.interfaces.produzir_produto import produzir_produto_ui
 
 
-
-
-
-
 def menu_principal(empresa):
-   empresa_service = EmpresaService(empresa)
-   estoque_service = EstoqueService(empresa)
-   produto_service = ProdutoService()
    while True:
       print("\n==============================")
       print("SISTEMA MRP -", empresa.nome)
@@ -32,16 +25,16 @@ def menu_principal(empresa):
             cadastrar_produto_ui(empresa)
 
          case "2":
-            criar_estrutura_ui(empresa_service)
+            criar_estrutura_ui(empresa)
 
          case "3":
-            produzir_produto_ui(produto_service)
+            produzir_produto_ui(empresa)
 
          case "4":
-            estoque_service.listar(empresa)
+            estoque_service.listar(empresa) # criar um arquivo em ui/interface para aqui no menu
 
          case "5":
-            empresa_service.listar_produtos()
+            empresa_service.listar_produtos() # criar um arquivo em ui/interface para aqui no menu
 
          case "0":
             print("\nEncerrando sistema... Até logo!")
