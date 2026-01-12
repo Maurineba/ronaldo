@@ -1,4 +1,5 @@
 from services.empresa_service import EmpresaService
+from models.insumo import Insumo
 
 def consultar_produto_ui(empresa):
     empresa_service = EmpresaService(empresa)
@@ -17,6 +18,14 @@ def consultar_produto_ui(empresa):
         estoque = empresa.estoque.itens[codigo]["quantidade"]
     
     print(f"\nProduto: {produto.nome}")
+    
+    if isinstance(produto, Insumo) and produto.eh_composto:
+        print("Tipo: Insumo Composto")
+    elif isinstance(produto, Insumo):
+        print("Tipo: Insumo Simples")
+    else:
+        print("Tipo: Produto Final")
+    
     print(f"Estoque: {estoque} unidades")
     
     if hasattr(produto, 'estrutura') and produto.estrutura:
